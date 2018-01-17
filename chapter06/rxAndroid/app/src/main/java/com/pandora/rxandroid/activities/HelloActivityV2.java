@@ -11,6 +11,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import io.reactivex.Observable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.observers.DisposableObserver;
 
 public class HelloActivityV2 extends RxAppCompatActivity {
     public static final String TAG = HelloActivityV2.class.getSimpleName();
@@ -26,11 +28,37 @@ public class HelloActivityV2 extends RxAppCompatActivity {
 
         mUnbinder = ButterKnife.bind(this);
 
+        DisposableObserver<String> observable = new DisposableObserver<String>() {
+            @Override
+            public void onNext(@NonNull String s) {
+                textView.setText(s);
+            }
+            @Override
+            public void onError(@NonNull Throwable e) { }
+            @Override
+            public void onComplete() { }
+        };
         Observable.<String>create(s -> {
             s.onNext("Hello, world!");
             s.onComplete();
-        }).subscribe(o -> textView.setText(o));
+        }).subscribe(observable);
 
+//        Observable<String> observable = new DisposableObserver<String>() {
+//            @Override
+//            public void onNext(@NonNull String s) {
+//                textView.setText(s);
+//            }
+//            @Override
+//            public void onError(@NonNull Throwable e) { }
+//            @Override
+//            public void onComplete() { }
+//        };
+
+//        Observable.<String>create(s -> {
+//            s.onNext("Hello, world!");
+//            s.onComplete();
+//        }).subscribe(o -> textView.setText(o));
+//
 
         // Lambda 적용.
 //        Observable.just("Hello, world!")

@@ -31,6 +31,6 @@ public class IntervalExample {
 	public static void main(String[] args) { 
 		IntervalExample demo = new IntervalExample();
 		demo.printNumbers();
-//		demo.noInitialDelay();
+		demo.noInitialDelay();
 	}
 }

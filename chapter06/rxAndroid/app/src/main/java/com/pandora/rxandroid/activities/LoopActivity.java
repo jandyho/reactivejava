@@ -8,19 +8,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import com.pandora.rxandroid.R;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
+import com.pandora.rxandroid.R;
 import io.reactivex.Observable;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class LoopActivity extends AppCompatActivity {
@@ -99,8 +96,8 @@ public class LoopActivity extends AppCompatActivity {
 
         // rxJava 2.x
         Observable.fromIterable(samples)
-                .skipWhile(s -> !s.contains("apple"))
-//                .filter(s -> s.contains("apple"))
+//                .skipWhile(s -> !s.contains("apple"))
+                .filter(s -> s.contains("apple"))
                 .first("Not found")
                 .subscribe(this::log);
 
