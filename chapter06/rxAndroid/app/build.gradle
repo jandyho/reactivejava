@@ -13,19 +13,27 @@ apply plugin: 'me.tatarka.retrolambda'
 
 
 ext {
-    sdkVersion= 24
-    supportLibVersion= "24.2.1"
+    sdkVersion= 25
+    supportLibVersion= "25.3.1"
+    ANDROID_BUILD_COMPILE_SDK_VERSION=25
+    ANDROID_BUILD_TARGET_SDK_VERSION=25
+    ANDROID_BUILD_MIN_SDK_VERSION=16
+    ANDROID_BUILD_TOOLS_VERSION="25.0.3"
+    ANDROID_BUILD_SDK_VERSION=25
+    APP_PACKAGE_NAME="com.pandora.rxandroid"
+    APP_VERSION_CODE=1
+    APP_VERSION_NAME="1.0"
 }
 
 android {
     compileSdkVersion sdkVersion
-    buildToolsVersion '25.0.2'
+    buildToolsVersion ANDROID_BUILD_TOOLS_VERSION
     defaultConfig {
-        applicationId "com.pandora.rxandroid"
-        minSdkVersion 15
+        applicationId APP_PACKAGE_NAME
+        minSdkVersion ANDROID_BUILD_MIN_SDK_VERSION
         targetSdkVersion sdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode APP_VERSION_CODE
+        versionName APP_VERSION_NAME
     }
     buildTypes {
         release {
