@@ -6,6 +6,7 @@ import com.yudong80.reactivejava.common.Shape;
 
 import io.reactivex.Observable;
 import io.reactivex.Single;
+import io.reactivex.functions.Consumer;
 
 import static com.yudong80.reactivejava.common.Shape.GREEN;
 import static com.yudong80.reactivejava.common.Shape.RED;
@@ -22,7 +23,7 @@ public class AllFunctionExample implements MarbleDiagram{
 			.map(Shape::getShape)
 			.all(Shape.BALL::equals);
 			//.all(val -> Shape.BALL.equals(Shape.getShape(val)));
-		source.subscribe(Log::i);
+		source.subscribe((Consumer<? super Boolean>) Log::i);
 	}
 	
 	public void wrongCase() { 
@@ -36,7 +37,7 @@ public class AllFunctionExample implements MarbleDiagram{
 			.doOnSuccess(v -> Log.d("onSuccess : val = " + v));
 		
 			//.all(val -> Shape.BALL.equals(Shape.getShape(val)));
-		source.subscribe(Log::i);		
+		source.subscribe((Consumer<? super Boolean>) Log::i);
 	}
 	
 	public static void main(String[] args) { 
